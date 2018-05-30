@@ -3,11 +3,6 @@
 import os
 import sys
 
-try: # for pip >= 10
-    from pip._internal.req import parse_requirements
-except ImportError: # for pip <= 9.0.3
-    from pip.req import parse_requirements
-
 from codecs import open
 
 try:
@@ -23,8 +18,10 @@ packages = [
     'python-kafka-logging',
 ]
 
-install_requirements = parse_requirements('requirements.txt')
-requirements = [str(ir.req) for ir in install_requirements]
+requirements = [
+    'kafka-python==0.9.2',
+    'logstash-formatter==0.5.8'
+]
 
 with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
